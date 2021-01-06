@@ -13,6 +13,7 @@ To run truffle tests:
 ```
 npm install
 truffle test
+```
 
 # Deploy
 To deploy the contracts
