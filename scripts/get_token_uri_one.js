@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const { Harmony } = require('@harmony-js/core')
 const { ChainID, ChainType, fromWei, Unit, Units, hexToNumber } = require('@harmony-js/utils')
-const { getAddressFromPublicKey, toBech32, fromBech32 } = require('@harmony-js/crypto')
+
 
 const ERC721Mintable = (require('../build/contracts/ERC721Mintable.json')).abi
 
@@ -35,13 +35,13 @@ const getTokenURI = async (tokenId) => {
     const options = { gasPrice: 1000000000, gasLimit: 6721900, from: process.env.HARMONY_CHECKSUM_ADDRESS }
 
     try {
-        const tokenURI = await contract.methods.tokenURI(tokenId).call(options)
+        const tokenURI = await contract.methods.ownerOf(tokenId).call(options)
         console.log('Token URI:', tokenURI)
     } catch (e) {
         console.log('Error:', e)
     }
 }
 
-const tokenId = '2'
+const tokenId = '123'
 
 getTokenURI(tokenId)

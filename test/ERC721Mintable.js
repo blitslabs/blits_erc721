@@ -11,6 +11,7 @@ contract('ERC721Mintable', (accounts) => {
             await this.contract.mint(account_one, 1, { from: account_one})
             await this.contract.mint(account_one, 2, { from: account_one })
             await this.contract.mint(account_one, 3, { from: account_one })
+            
         })
 
         it('should return the total supply', async () => {
@@ -24,7 +25,7 @@ contract('ERC721Mintable', (accounts) => {
         })
 
         it('should return token uri', async () => {
-            const tokenURI = 'https://blits.net/api_wallet/nft/1'
+            const tokenURI = 'https://nfts.blits.net/one/1'
             const resURI = await this.contract.tokenURI(1)
             assert.equal(resURI, tokenURI, 'Invalid token URI')
         })
@@ -60,12 +61,6 @@ contract('ERC721Mintable', (accounts) => {
             assert.equal(owner, account_one, 'Incorrect contract owner')
         })
 
-        it('should change base token URI', async () => {
-            const newBaseTokenURI = 'https://blits.net/nfts/1'
-            await this.contract.setBaseTokenURI(newBaseTokenURI, { from: account_one })
-            const resURI = await this.contract.tokenURI(1)
-            console.log(resURI)
-            assert.equal(resURI, newBaseTokenURI, 'Base token URI not changed')
-        })
+        
     })
 })
