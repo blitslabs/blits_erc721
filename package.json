@@ -1,0 +1,34 @@
+{
+  "name": "nft",
+  "version": "1.0.0",
+  "description": "# Install This respository contains Smart Contract code in Solidity (using Truffle), tests (also using Truffle). To install, download or clone the repo, then: ``` npm install truffle compile ```",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.0.1",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "ethereumjs-tx": "^2.1.2",
+    "firebase-admin": "^9.4.2",
+    "openzeppelin-solidity": "^2.2.0",
+    "request-promise": "^4.2.6",
+    "tslib": "^2.0.3",
+    "web3": "^1.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blitslabs/blits_erc721.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blitslabs/blits_erc721/issues"
+  },
+  "homepage": "https://github.com/blitslabs/blits_erc721#readme"
+}
