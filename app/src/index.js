@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import ABI from '../../build/contracts/ERC721Mintable.json'
-import {Contract} from "./contracts/domain/contract";
-import {ERC721Contract} from "./contracts/infrastructure/ERC721.contract";
+import {ERC721Contract} from "./contracts/domain/ERC721.contract";
+import {ERC721HarmonyContract} from "./contracts/infrastructure/ERC721Harmony.contract";
 const CONTRACT_ADDRESS = '0x105fe56ff15f4029bf996d973c9c17b8d8f94be5'
 
 const App = {
@@ -17,7 +17,7 @@ window.addEventListener('load', async () => {
         await window.ethereum.enable()
     }
 
-    const contract = new ERC721Contract(CONTRACT_ADDRESS);
+    const contract = new ERC721HarmonyContract(CONTRACT_ADDRESS);
     console.log(await contract.getMetadata());
 })
 

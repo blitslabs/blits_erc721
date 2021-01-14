@@ -1,5 +1,5 @@
 import {Metadata} from "./metadata";
 
-export interface Contract{
+export interface ERC721Contract{
     getMetadata(): Promise<Metadata>;
 }

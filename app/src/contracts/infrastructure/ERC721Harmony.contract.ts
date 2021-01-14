@@ -1,11 +1,12 @@
-import {Contract} from "../domain/contract";
-import {Metadata} from "../domain/metadata";
-import ABI from '../../../../build/contracts/ERC721Mintable.json'
-import {Contract as Web3Contract} from 'web3-eth-contract';
+import {ERC721Contract} from "../domain/ERC721.contract";
+import {Contract as Web3Contract} from "web3-eth-contract";
 import App from "../../index";
+import ABI from '../../../../build/contracts/ERC721Mintable.json'
+import {Metadata} from "../domain/metadata";
 
-export class ERC721Contract implements Contract{
+export class ERC721HarmonyContract implements ERC721Contract {
     private readonly contract: Web3Contract;
+
     constructor(address: string) {
         this.contract = new App.web3.eth.Contract(ABI.abi, address);
     }
