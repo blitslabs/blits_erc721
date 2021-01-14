@@ -1,5 +1,6 @@
 import Web3 from 'web3'
 import ABI from '../../build/contracts/ERC721Mintable.json'
+import {Contract} from "./contracts/domain/contract";
 const CONTRACT_ADDRESS = '0xe0036B2E878a67029b3a24e35aA7d28F221d28DC'
 
 const App = {
@@ -18,10 +19,13 @@ const App = {
 window.App = App
 
 window.addEventListener('load', async () => {
-    if (window.ethereum) {
+    /*if (window.ethereum) {
         App.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"))
         await window.ethereum.enable()
     } 
 
-    App.getMetadata()
+    App.getMetadata()*/
+
+    const metadata = new Contract().getMetadata();
+    console.log(metadata);
 })

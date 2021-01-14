@@ -1,0 +1,1 @@
+{"version":3,"file":"contract.js","sourceRoot":"","sources":["contract.ts"],"names":[],"mappings":";;;AAEA;IAGI;QACI,IAAI,CAAC,QAAQ,GAAG;YACZ,IAAI,EAAE,KAAK;YACX,MAAM,EAAE,KAAK;SAChB,CAAA;IACL,CAAC;IAEM,8BAAW,GAAlB;QACI,OAAO,IAAI,CAAC,QAAQ,CAAC;IACzB,CAAC;IACL,eAAC;AAAD,CAAC,AAbD,IAaC;AAbY,4BAAQ"}
