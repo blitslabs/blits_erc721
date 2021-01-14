@@ -2,8 +2,7 @@ const ERC721Mintable = artifacts.require('ERC721Mintable')
 
 contract('ERC721Mintable', (accounts) => {
     const account_one = accounts[0]
-    const account_two = accounts[1]
-//ERC721Enumerable ERC721Metadata ERC721Mintable
+
     describe('ERC721Mintable Enumerable methods test', () => {
 
         beforeEach(async () => {
@@ -12,6 +11,12 @@ contract('ERC721Mintable', (accounts) => {
             await this.contract.mint(account_one, 2, { from: account_one });
             await this.contract.mint(account_one, 3, { from: account_one });
         });
+
+        it('should support ERC721Enumerable interface', async () => {
+            const ERC721_ENUMERABLE_INTERFACE_ID = '0x780e9d63';
+            const isSupported = await this.contract.supportsInterface(ERC721_ENUMERABLE_INTERFACE_ID);
+            assert.equal(isSupported, true, 'Must be supported');
+        })
 
         it('should return the total amount of tokens stored by the contract', async () => {
             const totalSupply = await this.contract.totalSupply();
@@ -36,14 +41,5 @@ contract('ERC721Mintable', (accounts) => {
             let tokenId = await this.contract.tokenByIndex(index);
             assert.equal(tokenId, 1, 'Invalid tokenId');
         })
-
-        it('should return token uri', async () => {
-
-        })
-
-        it('should transfer token from one owner to another', async () => {
-
-        })
-
     })
 })
