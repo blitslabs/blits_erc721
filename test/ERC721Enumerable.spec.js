@@ -7,10 +7,10 @@ contract('ERC721Mintable', (accounts) => {
     describe('ERC721Mintable Enumerable methods test', () => {
 
         beforeEach(async () => {
-            this.contract = await ERC721Mintable.new({ from: account_one })
-            await this.contract.mint(account_one, 1, { from: account_one})
-            await this.contract.mint(account_one, 2, { from: account_one })
-            await this.contract.mint(account_one, 3, { from: account_one })
+            this.contract = await ERC721Mintable.new({ from: account_one });
+            await this.contract.mint(account_one, 1, { from: account_one});
+            await this.contract.mint(account_one, 2, { from: account_one });
+            await this.contract.mint(account_one, 3, { from: account_one });
         });
 
         it('should return the total amount of tokens stored by the contract', async () => {
@@ -18,21 +18,23 @@ contract('ERC721Mintable', (accounts) => {
             assert.equal(totalSupply, 3, 'Invalid total supply');
         })
 
-        it('should return  token ID at the given index of the specified owner', async () => {
+        it('should return the token ID at the given index of the specified owner', async () => {
             const owner = account_one;
             let index = 0;
-            let token = await this.contract.tokenOfOwnerByIndex(owner, index);
-            assert.equal(token, 1, 'Invalid tokenId');
+            let tokenId = await this.contract.tokenOfOwnerByIndex(owner, index);
+            assert.equal(tokenId, 1, 'Invalid tokenId');
             index = 1;
-            token = await this.contract.tokenOfOwnerByIndex(owner, index);
-            assert.equal(token, 2, 'Invalid tokenId');
+            tokenId = await this.contract.tokenOfOwnerByIndex(owner, index);
+            assert.equal(tokenId, 2, 'Invalid tokenId');
             index = 2;
-            token = await this.contract.tokenOfOwnerByIndex(owner, index);
-            assert.equal(token, 3, 'Invalid tokenId');
+            tokenId = await this.contract.tokenOfOwnerByIndex(owner, index);
+            assert.equal(tokenId, 3, 'Invalid tokenId');
         })
 
-        it('should get token balance', async () => {
-
+        it('should return the token ID at the given index of all tokens in this contract', async () => {
+            let index = 0;
+            let tokenId = await this.contract.tokenByIndex(index);
+            assert.equal(tokenId, 1, 'Invalid tokenId');
         })
 
         it('should return token uri', async () => {
