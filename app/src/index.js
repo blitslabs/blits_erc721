@@ -1,8 +1,6 @@
 import Web3 from 'web3'
-import ABI from '../../build/contracts/ERC721Mintable.json'
-import {ERC721Contract} from "./contracts/domain/ERC721.contract";
 import {ERC721HarmonyContract} from "./contracts/infrastructure/ERC721Harmony.contract";
-const CONTRACT_ADDRESS = '0xf9cb0a924b08b87ad0b5498d81a6a426dda25Cbe'
+const CONTRACT_ADDRESS = '0x03042C7fdA8c942a54C3e0cffAFB736b44C19986'
 
 const App = {
     web3: null,
