@@ -1,5 +1,7 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
+const dotenv = require('dotenv').config({path: __dirname + '/.env'});
 
 module.exports = {
   // bundling mode
@@ -32,6 +34,9 @@ module.exports = {
 
   plugins: [
     new CopyWebpackPlugin([{ from: "./public", to: "." }]),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(dotenv.parsed)
+    }),
   ],
 
   devtool: 'source-map',

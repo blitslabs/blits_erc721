@@ -1,10 +1,7 @@
 import {HarmonyData} from "../domain/harmony-data";
-
-require('dotenv').config()
-
 let network, net, url
 
-switch(process.env.ENV){
+switch(process.env.ONE_NETWORK){
     case 'local': {
         network = 0;
         net = 2;
