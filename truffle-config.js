@@ -61,6 +61,22 @@ module.exports = {
       gas: 7897368,
       provider: new HDWalletProvider(testnet_private_key, http_provider)
     },
+    oneTestnet: {
+      network_id: "2",
+      timeoutBlocks: 50000,
+      provider: () => {
+        const truffleProvider = new TruffleProvider(
+            harmony_provider,
+            { memonic: harmony_mnemonic },
+            { shardID: 0, chainId: 2 },
+            { gasLimit: 6721975, gasPrice: 20000000000},
+        );
+        const newAcc = truffleProvider.addByPrivateKey(harmony_private_key);
+        truffleProvider.setSigner(newAcc);
+        return truffleProvider;
+      },
+      networkCheckTimeout: 10000
+    },
     one: {
       network_id: "1",
       timeoutBlocks: 50000,
@@ -75,6 +91,7 @@ module.exports = {
         truffleProvider.setSigner(newAcc);
         return truffleProvider;
       },
+      networkCheckTimeout: 10000
     }
     // Another network with more advanced options...
     // advanced: {

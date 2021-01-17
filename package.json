@@ -22,7 +22,8 @@
   },
   "scripts": {
     "test": "truffle test",
-    "compile": "truffle compile"
+    "compile": "truffle compile",
+    "start-ganache": "ganache-cli -p 7545"
   },
   "repository": {
     "type": "git",
