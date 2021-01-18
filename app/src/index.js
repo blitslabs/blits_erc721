@@ -10,6 +10,8 @@ const App = {
 window.App = App
 
 window.addEventListener('load', async () => {
+    console.log(window)
+    console.log(window.onewallet)
     if (window.ethereum) {
         App.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"))
         await window.ethereum.enable()
@@ -17,6 +19,8 @@ window.addEventListener('load', async () => {
 
     const contract = new ERC721HarmonyContract(CONTRACT_ADDRESS);
     console.log(await contract.getMetadata());
+
+    await contract.mint("one1pnj3h4xh9fz780m8cd60t00hta6ph6efjtt8y9", 1);
 })
 
 export default App;
