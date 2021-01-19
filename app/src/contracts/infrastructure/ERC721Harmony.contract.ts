@@ -16,14 +16,17 @@ export class ERC721HarmonyContract implements ERC721Contract {
             chainType: ChainType.Harmony,
             chainId: harmonyConfiguration.net
         });
-        this.contract = this.hmy.contracts.createContract(ABI.abi, address);
-
-        this.initHarmonyExtension()
+        this.initHarmonyExtension();
+        this.contract = this.hmyExtension.contracts.createContract(ABI.abi, address);
     }
 
 
-    private async initHarmonyExtension(){
+    private initHarmonyExtension(){
         if ((window as any).onewallet) {
+            (window as any).onewallet.network = {
+                chain_id: 2,
+                chain_url: "https://api.s0.b.hmny.io"
+            };
             this.hmyExtension = new HarmonyExtension((window as any).onewallet, {
                 chainType: ChainType.Harmony,
                 chainId: harmonyConfiguration.net
@@ -48,8 +51,8 @@ export class ERC721HarmonyContract implements ERC721Contract {
 
     async mint(to: string, tokenId: number) {
         const owner = "0x0Ce51bd4D72A45E3BF67c374F5Bdf75F741bEB29";
-        console.log(await this.hmyExtension.wallet.getAccount())
-        console.log(this.hmy.wallet.accounts)
+        await this.hmyExtension.wallet.getAccount()
+        console.log(this.hmyExtension)
         const minted = await this.contract.methods.mint(to, tokenId).send({from: owner, gas: 6721975, gasPrice: 20000000000});
         console.log(minted)
     }
