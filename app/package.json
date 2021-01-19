@@ -17,8 +17,8 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "@harmony-js/core": "^0.1.56",
-    "@harmony-js/utils": "^0.1.56",
+    "@harmony-js/core": "^0.1.55",
+    "@harmony-js/utils": "^0.1.48",
     "web3": "^1.0.0-beta.37"
   }
 }

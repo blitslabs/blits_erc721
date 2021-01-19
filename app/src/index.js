@@ -1,5 +1,5 @@
 import Web3 from 'web3'
-import {ERC721HarmonyContract} from "./contracts/infrastructure/ERC721Harmony.contract";
+import {ERC721HarmonyContract} from "./contracts/harmony/infrastructure/ERC721Harmony.contract";
 const CONTRACT_ADDRESS = '0x03042C7fdA8c942a54C3e0cffAFB736b44C19986'
 
 const App = {
