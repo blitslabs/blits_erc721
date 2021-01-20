@@ -1,24 +1,24 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
-const dotenv = require('dotenv').config({path: __dirname + '/.env'});
+const dotenv = require("dotenv").config({ path: __dirname + "/.env" });
 
 module.exports = {
   // bundling mode
-  mode: 'development',
+  mode: "development",
 
   // entry files
-  entry: './src/index.js',
+  entry: "./src/index.js",
 
   // output bundles (location)
   output: {
-    path: path.resolve( __dirname, 'dist' ),
-    filename: 'index.js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "index.js",
   },
 
   // file resolutions
   resolve: {
-    extensions: [ '.ts', '.js' ],
+    extensions: [".ts", ".js"],
   },
 
   // loaders
@@ -26,23 +26,23 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
-      }
-    ]
+      },
+    ],
   },
 
   plugins: [
     new CopyWebpackPlugin([{ from: "./public", to: "." }]),
     new webpack.DefinePlugin({
-      "process.env": JSON.stringify(dotenv.parsed)
+      "process.env": JSON.stringify(dotenv.parsed),
     }),
   ],
 
-  devtool: 'source-map',
+  devtool: "source-map",
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true
-  }
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+  },
 };

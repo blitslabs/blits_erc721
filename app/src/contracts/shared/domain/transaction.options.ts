@@ -1,5 +1,5 @@
-export interface TransactionOptions{
-    gasLimit?: string;
-    gasPrice?: string;
-    from?: string;
+export interface TransactionOptions {
+  gasLimit?: string;
+  gasPrice?: string;
+  from?: string;
 }
