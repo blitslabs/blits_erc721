@@ -1,5 +1,4 @@
 const ERC721Mintable = artifacts.require('ERC721Mintable')
-const truffleAssert = require('truffle-assertions');
 
 contract('Ownable', (accounts) => {
     const account_one = accounts[0]
@@ -48,7 +47,8 @@ contract('Ownable', (accounts) => {
             const owner = await this.contract.owner()
             assert.equal(owner, account_one, 'Incorrect contract owner')
         })
-             
+
+        
     })
 
 })
