@@ -11,8 +11,6 @@ const App = {
 window.App = App;
 
 window.addEventListener("load", async () => {
-    console.log(window);
-    console.log(window.onewallet);
     if (window.ethereum) {
         App.web3 = new Web3(
             new Web3.providers.HttpProvider("http://127.0.0.1:7545")
@@ -25,7 +23,7 @@ window.addEventListener("load", async () => {
     const ext = await getHarmonyExtension();
     await ext.logout();
 
-    await contract.mint("one1pnj3h4xh9fz780m8cd60t00hta6ph6efjtt8y9", 1);
+    console.log(await contract.balanceOf("one1pnj3h4xh9fz780m8cd60t00hta6ph6efjtt8y9"));
 });
 
 export default App;

@@ -29,6 +29,6 @@ export class ERC721HarmonyContract implements ERC721Contract {
 
     async balanceOf(account: string): Promise<number> {
         const contract = await getHarmonyContract(ABI.abi, this.address);
-        return contract.methods.balanceOf(account).call();
+        return (await contract.methods.balanceOf(account).call()).toNumber();
     }
 }
