@@ -31,4 +31,11 @@ export class ERC721HarmonyContract implements ERC721Contract {
         const contract = await getHarmonyContract(ABI.abi, this.address);
         return (await contract.methods.balanceOf(account).call()).toNumber();
     }
+
+    async transfer(from: string, to: string, tokenId: number): Promise<any> {
+        const contract = await getHarmonyContract(ABI.abi, this.address);
+        return contract.methods
+            .transferFrom(from, to, tokenId)
+            .send({ gas: 6721975, gasPrice: 20000000000 });
+    }
 }

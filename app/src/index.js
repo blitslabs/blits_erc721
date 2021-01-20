@@ -20,10 +20,8 @@ window.addEventListener("load", async () => {
 
     const contract = new ERC721HarmonyContract(CONTRACT_ADDRESS);
 
-    const ext = await getHarmonyExtension();
-    await ext.logout();
-
-    console.log(await contract.balanceOf("one1pnj3h4xh9fz780m8cd60t00hta6ph6efjtt8y9"));
+    const from = "one1pnj3h4xh9fz780m8cd60t00hta6ph6efjtt8y9";
+    const to = "one1swc96x2m54wfnklgyvwahragkey67ryheatx8l";
 });
 
 export default App;
