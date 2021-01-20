@@ -1,5 +1,6 @@
 import Web3 from 'web3'
 import {ERC721HarmonyContract} from "./contracts/harmony/infrastructure/ERC721Harmony.contract";
+import {getHarmonyExtension} from "./contracts/harmony/domain/harmony-wallet";
 const CONTRACT_ADDRESS = '0x03042C7fdA8c942a54C3e0cffAFB736b44C19986'
 
 const App = {
@@ -18,7 +19,9 @@ window.addEventListener('load', async () => {
     }
 
     const contract = new ERC721HarmonyContract(CONTRACT_ADDRESS);
-    console.log(await contract.getMetadata());
+
+    const ext = await getHarmonyExtension();
+    await ext.logout();
 
     await contract.mint("one1pnj3h4xh9fz780m8cd60t00hta6ph6efjtt8y9", 1);
 })

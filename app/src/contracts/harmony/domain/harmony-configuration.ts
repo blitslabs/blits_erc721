@@ -1,4 +1,4 @@
-import {HarmonyData} from "../domain/harmony-data";
+import {HarmonyData} from "./harmony-data";
 let network, net, url
 
 switch(process.env.ONE_NETWORK){
@@ -19,6 +19,11 @@ switch(process.env.ONE_NETWORK){
         net = 1;
         url = process.env.MAINNET_0_URL
         break;
+    }
+    default: {
+        network = 1;
+        net = 2;
+        url = 'https://api.s0.b.hmny.io'
     }
 }
 
