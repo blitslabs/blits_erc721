@@ -1,5 +1,5 @@
 export interface Metadata {
-  name: string;
-  symbol: string;
-  baseURI: string;
+    name: string;
+    symbol: string;
+    baseURI: string;
 }
