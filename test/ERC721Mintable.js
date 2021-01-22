@@ -1,4 +1,5 @@
 const ERC721Mintable = artifacts.require('ERC721Mintable')
+const truffleAssert = require('truffle-assertions');
 
 contract('ERC721Mintable', (accounts) => {
     const account_one = accounts[0]
@@ -38,6 +39,8 @@ contract('ERC721Mintable', (accounts) => {
 
     })
 
+
+    // Moving this test to ERC721Ownable.spec.js
     describe('have ownership properties', () => {
         beforeEach(async () => {
             this.contract = await ERC721Mintable.new({ from: account_one })
