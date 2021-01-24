@@ -22,10 +22,13 @@ export class ERC721HarmonyContract implements ERC721Contract {
     }
 
     async mint(to: string, tokenId: number) {
+        if(!tokenId){
+            tokenId = await this.totalSupply();
+        }
         const contract = await this.harmonyFactory.getHarmonyContract(ABI.abi, this.contractAddress);
         return contract.methods
             .mint(to, tokenId)
-            .send({ gas: 4000000, gasPrice: 400000000000 });
+            .send({ });
     }
 
     async balanceOf(account: string): Promise<number> {
@@ -37,7 +40,7 @@ export class ERC721HarmonyContract implements ERC721Contract {
         const contract = await this.harmonyFactory.getHarmonyContract(ABI.abi, this.contractAddress);
         return contract.methods
             .transferFrom(from, to, tokenId)
-            .send({ gas: 6721975, gasPrice: 20000000000 });
+            .send({ });
     }
 
     async totalSupply(): Promise<number> {

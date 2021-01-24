@@ -69,7 +69,7 @@ module.exports = {
             harmony_provider,
             { memonic: harmony_mnemonic },
             { shardID: 0, chainId: 2 },
-            { gasLimit: 6721975, gasPrice: 20000000000},
+            //{ gasLimit: 6721975, gasPrice: 20000000000},
         );
         const newAcc = truffleProvider.addByPrivateKey(harmony_private_key);
         truffleProvider.setSigner(newAcc);

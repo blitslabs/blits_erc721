@@ -29,7 +29,7 @@ window.addEventListener("load", async () => {
     console.log(await contractWithTransaction.balanceOf(to));
     console.log(await contractWithExtension.getTokens(from));
     console.log(await contractWithTransaction.getTokens(to));
-    //console.log(await contractWithExtension.mint(from, 10));
+    console.log(await contractWithTransaction.mint(from));
     //console.log(await contractWithTransaction.mint(from, 6));
 
 });
