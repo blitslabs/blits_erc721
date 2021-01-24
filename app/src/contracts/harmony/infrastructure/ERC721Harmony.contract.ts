@@ -1,18 +1,19 @@
 import { ERC721Contract } from "../../shared/domain/ERC721.contract";
 import ABI from "../../../../../build/contracts/ERC721Mintable.json";
 import { Metadata } from "../../shared/domain/metadata";
-import { getHarmonyContract } from "../domain/harmony-wallet";
+import {HarmonyFactory} from "../domain/harmony.factory";
+import {TokenURI} from "../../shared/domain/token-uri";
 
 export class ERC721HarmonyContract implements ERC721Contract {
-    constructor(private readonly address: string) {}
+    constructor(private readonly harmonyFactory: HarmonyFactory, private readonly contractAddress: string) {}
 
     async getOwner(): Promise<string> {
-        const contract = await getHarmonyContract(ABI.abi, this.address);
+        const contract = await this.harmonyFactory.getHarmonyContract(ABI.abi, this.contractAddress);
         return contract.methods.owner().call();
     }
 
     async getMetadata(): Promise<Metadata> {
-        const contract = await getHarmonyContract(ABI.abi, this.address);
+        const contract = await this.harmonyFactory.getHarmonyContract(ABI.abi, this.contractAddress);
         return {
             name: await contract.methods.name().call(),
             symbol: await contract.methods.symbol().call(),
@@ -21,21 +22,41 @@ export class ERC721HarmonyContract implements ERC721Contract {
     }
 
     async mint(to: string, tokenId: number) {
-        const contract = await getHarmonyContract(ABI.abi, this.address);
+        const contract = await this.harmonyFactory.getHarmonyContract(ABI.abi, this.contractAddress);
         return contract.methods
             .mint(to, tokenId)
-            .send({ gas: 6721975, gasPrice: 20000000000 });
+            .send({ gas: 4000000, gasPrice: 400000000000 });
     }
 
     async balanceOf(account: string): Promise<number> {
-        const contract = await getHarmonyContract(ABI.abi, this.address);
+        const contract = await this.harmonyFactory.getHarmonyContract(ABI.abi, this.contractAddress);
         return (await contract.methods.balanceOf(account).call()).toNumber();
     }
 
     async transfer(from: string, to: string, tokenId: number): Promise<any> {
-        const contract = await getHarmonyContract(ABI.abi, this.address);
+        const contract = await this.harmonyFactory.getHarmonyContract(ABI.abi, this.contractAddress);
         return contract.methods
             .transferFrom(from, to, tokenId)
             .send({ gas: 6721975, gasPrice: 20000000000 });
+    }
+
+    async totalSupply(): Promise<number> {
+        const contract = await this.harmonyFactory.getHarmonyContract(ABI.abi, this.contractAddress);
+        return (await contract.methods.totalSupply().call()).toNumber();
+    }
+
+    async getTokens(account: string): Promise<TokenURI[]> {
+        const balance = await this.balanceOf(account);
+        const contract = await this.harmonyFactory.getHarmonyContract(ABI.abi, this.contractAddress);
+        const baseURL = (await contract.methods.baseURI().call());
+        const tokens: TokenURI[] = [];
+        for (let i = 0; i < balance; i++){
+            const id = (await contract.methods.tokenOfOwnerByIndex(account, i).call()).toNumber();
+            tokens.push({
+                id,
+                url: `${baseURL}${id}`
+            });
+        }
+        return tokens;
     }
 }

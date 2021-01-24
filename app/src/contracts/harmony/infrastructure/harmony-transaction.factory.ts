@@ -6,12 +6,13 @@ import {ChainType} from "@harmony-js/utils";
 export class HarmonyTransactionFactory extends HarmonyFactory{
     private readonly harmony: Harmony;
 
-    constructor(harmonyConfig: HarmonyData) {
+    constructor(harmonyConfig: HarmonyData, private key: string) {
         super(harmonyConfig);
         this.harmony = new Harmony(harmonyConfig.url, {
             chainType: ChainType.Harmony,
             chainId: this.harmonyConfig.net,
-        })
+        });
+        this.harmony.wallet.addByPrivateKey(key);
     }
 
     async getHarmony(): Promise<Harmony> {
